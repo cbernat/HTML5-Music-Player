@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta decription="Music Player with Playlist" />
+	<title>Music Player</title>
+	<script type="text/javascript">
+	    var player =document.getElementById('player');
+	 
+	    window.onload = function()  {
+	        player= document.getElementById('player');
+	    }
+	 
+	    function playMusic()
+	    {
+	        player.play();
+	    }
+	 
+	    function pauseMusic()
+	    {
+	        player.pause();
+	    }
+	 
+	    function stopMusic()
+	    {
+	        player.pause();
+			player.currentTime = 0;
+	    }
+	</script>
+</head>
+<body>
+<audio id="player">
+    <source src="media/Sample.mp3" type="audio/mpeg">
+	<source src="media/Sample.ogg" type="audio/ogg">
+</audio>
+	<button onclick="playMusic()">Play</button><br />
+	<button onclick="pauseMusic()">Pause</button><br />
+	<button onclick="stopMusic()">Stop</button><br />
+</body>
+</html>
