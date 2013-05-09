@@ -15,11 +15,11 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="Scripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="Scripts/vendor/jquery-1.9.1.js"><\/script>')</script>
 
         <script src="Scripts/main.js"></script>
-		<script src="Scripts/Player.js"></script>
+	<script src="Scripts/Player.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -47,20 +47,20 @@
                     </header>
                     <section id="playlist" class="musicFile-container">
                         <ul>
-							<li>Song 1 </li>
-							<li>Song 2</li>
-						</ul>
+				<li>Song 1 </li>
+				<li>Song 2</li>
+			</ul>
                     </section>
                     <footer>
                         <h3>Current Song</h3>
-						<section id="player-container">
+			<section id="player-container">
                         </section>
                     </footer>
                 </article>
 
                 <aside>
                     <h3>Search in Repo</h3>
-					<input id="searchBox" placeholder="Search..."></input>
+	            <input id="searchBox" placeholder="Search..."></input>
                     <section class="musicFile-container">
 					<ul>
 						<li>Song 4</li>
@@ -80,9 +80,17 @@
         </div>
 	<script type="text/javascript">
 		$(document).ready(function(){
-		player.initialize("player-container");
-		player.addToPlaylist("Sample");
-		player.Play();
+		 $.getScript('Scripts/Player.js')
+                         .done(function (script, textStatus) {
+                             console.log(textStatus + " loaded player");
+                             	player.initialize("player-container");
+				player.addToPlaylist("Sample");
+				player.Play();
+                             })
+                         .fail(function (jqxhr, settings, exception) {
+                            console.log("Triggered ajaxError handler.");
+                         });
+		
 		});
 	</script>
         
