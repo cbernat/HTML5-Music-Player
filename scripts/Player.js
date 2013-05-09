@@ -27,7 +27,7 @@ var player =
 		$("#musicPlayer")[0].play();
 	}
 	
-}	
+} 	
 	
 	/*
 	var player =document.getElementById('player');
