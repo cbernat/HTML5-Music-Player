@@ -1,4 +1,4 @@
-HTML5-Music-Player
-==================
+ThePlayer
+=========
 
-Html5 music player
+The player 
