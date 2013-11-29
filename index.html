@@ -3,23 +3,43 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head> 
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="author" content="Cecilia Bernat">
+		<meta name="author" content="Santi & Ceci">
         <meta name="description" content="Music Player with Playlist">
+        <title>Music Player</title>
         <meta name="viewport" content="width=device-width">
-	<title>Music Player</title>
 
+		<link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="scripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script>window.jQuery || document.write('<script src="scripts/vendor/jquery-1.9.1.js"><\/script>')</script>
 
-        <script src="scripts/main.js"></script>
-	<script src="scripts/Player.js"></script>
+		<script src="js/vendor/modernizr.min.js"></script>
+		<script src="js/vendor/jquery.min.js"></script>
+		<script src="js/vendor/jquery.nicescroll.min.js"></script>
+		<script src="js/vendor/swfobject.js"></script>
+		<script src="js/vendor/audio-player.js"></script>
+		<script src="js/player.js"></script>
+		<script>
+		swfobject.embedSWF(
+				"player.swf",
+				"player_fallback",
+				"200",
+				"20",
+				"9.0.0",
+				"",
+				{"mp3":"Metallica_Nothing_else_Matters.mp3"},
+				{"bgcolor":"#085c68"});
+				AudioPlayer.setup("js/vendor/player.swf", {  
+        width: 290,  
+        initialvolume: 100,  
+        transparentpagebg: "yes",  
+        left: "000000",  
+        lefticon: "FFFFFF"  
+    });  
+		</script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -31,43 +51,76 @@
                 <h1 class="title">Html5 Music Player</h1>
                 <nav>
                     <ul>
-                        <li><a href="#">Add a Song </a></li>
-                        <li><a href="#">Config</a></li>
+                        <li><a href="#">Add a Song <br>(Pending)</a></li>
+                        <li><a href="#">Config <br> (Pending)</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
 
         <div class="main-container">
+			
             <div class="main wrapper clearfix">
-
+				
                 <article>
                     <header>
-                        <h1>Playlist</h1>
+                        <h1>MP3 Player</h1>
+										
                     </header>
-                    <section id="playlist" class="musicFile-container">
-                        <ul>
-				<li>Song 1 </li>
-				<li>Song 2</li>
-			</ul>
-                    </section>
-                    <footer>
-                        <h3>Current Song</h3>
-			<section id="player-container">
-                        </section>
-                    </footer>
-                </article>
+                    <section>
+						<p>Music player done only with html5, css3, and jquery.</p> 
+
+                     <p id="player_fallback"></p>
+					<div id="divContenedor">
+						<div id="divReproductor">
+							<div id="divInfo">
+								<div id="divLogo">
+									<img src="img/logo.jpg" align="left" width="144px">
+								</div>
+								<div id="divInfoCancion">
+									<label id="trackName"><strong>Track: </strong><span id="CurrentTrackName">-</span></label>
+									<label id="trackLenght"><strong>Length: </strong><span>-</span></label>
+									<label id="elapsedTime"><strong>Elapsed: </strong><span>-</span></label>
+								</div>
+								<div style="clear: both"></div>
+							</div>
+							<div id="divControles">
+								<input type="button" id="Play-button" title="Play">
+								<input type="button" id="Pause-button" title="Pause/Continue">
+								<input type="button" id="Previous-button" title="Back">
+								<input type="button" id="Next-button" title="Next">
+								<input type="button" id="UpVolume-button" title="Turn up volume">
+								<input type="button" id="DownVolume-button" title="Turn down volume">
+								<input type="button" id="Mute-button" title="Put/Remove silence">
+								<input type="button" id="repeatList-button" title="Repeat playlist">
+							</div>
+							<div id="divProgreso">
+								<div id="divBarra" ></div>
+							</div>
+							<div id="divLista">
+								<ol id="playList">
+									
+									
+								</ol>
+							</div>
+							<div id="divCreditos">
+								<h1>Html5 Music Player </h1>
+							</div>
+						</div>
+					</div>
+					</section>
+				</article>
 
                 <aside>
                     <h3>Search in Repo</h3>
-	            <input id="searchBox" placeholder="Search..."></input>
+					<input id="searchBox" placeholder="Search..."></input>
                     <section class="musicFile-container">
 					<ul>
 						<li>Song 4</li>
 						<li>Song 3</li>
 					</ul>
+					<comment>This section is not available</comment>
 					</section>
-					
                 </aside>
 
             </div> <!-- #main -->
@@ -75,25 +128,77 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>footer</h3>
+                <h3>The html5Player Organization project</h3>
             </footer>
         </div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		 $.getScript('scripts/Player.js')
-                         .done(function (script, textStatus) {
-                             console.log(textStatus + " loaded player");
-                             	player.initialize("player-container");
-				player.addToPlaylist("Sample");
-				player.Play();
-                             })
-                         .fail(function (jqxhr, settings, exception) {
-                            console.log("Triggered ajaxError handler.");
-                         });
-		
-		});
-	</script>
-        
-    </body>
+
+ <script type="text/javascript">
+          
+	$("#divLista").niceScroll({ autohidemode: false,cursorwidth: 8, background: "#DCDCDC", cursorcolor: "#7F7F7F", railalign: "center", zindex: 99999 });
 	
+	function UpdateLoadSongsOnUI(listArray){
+		for(var i=0;i<listArray.length;i++){
+		$("#divLista").children().first().append($("<li></li>", {rel:listArray[i]}).append($("<strong>"+listArray[i]+"</strong>")));
+		}
+	}
+
+	player.initialize();
+	player.addToPlaylist("music/Metallica_Nothing_else_Matters.mp3");
+	player.addToPlaylist("music/Sample.mp3");
+	player.addToPlaylist("music/Kalimba.mp3");
+	player.addToPlaylist("music/SleepAway.mp3");
+	player.addToPlaylist("music/Notify.mp3");
+	
+	UpdateLoadSongsOnUI(player.playlistSources);
+	
+	$("#Play-button").click(function(){
+		player.Play();
+	});
+	
+	$("#Next-button").click(function(){
+		player.Next();
+	});
+	
+	$("#Previous-button").click(function(){
+		player.Prev();
+	});
+	
+	$('#Mute-button').click(function(){
+		player.Mute();
+		$(this).toggleClass('clsSeleccionado');
+	});
+	
+	$("#UpVolume-button").click(function(){
+	
+		player.VolumeUp();
+	});
+	
+	$("#DownVolume-button").click(function(){
+	
+		player.VolumeDown();
+	});
+	
+	
+	$("#Pause-button").click(function(){
+		player.Pause();
+	});
+	
+	$("#repeatList-button").click(function(){
+		player.repeatPlayList = !player.repeatPlayList;
+		$(this).toggleClass('clsSeleccionado');
+	});
+
+	$('input[type="button"]').hover(function(){
+		$(this).stop(true.true).animate({
+			opacity: .5
+		});
+	},function(){
+		$(this).stop(true,true).animate({
+			opacity: 1
+		});
+	});
+	
+
+</script>
+</body>
 </html>
